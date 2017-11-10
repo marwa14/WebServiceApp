@@ -5,7 +5,6 @@ package com.example.hp.callwebserviceapplication.Model;
  */
 
 public class Comment {
-
     private int postId;
     private int id;
     private String name;
