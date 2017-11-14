@@ -16,7 +16,6 @@ public class UtilsClass {
 
     public String getResponse(String url) throws IOException {
         String response = "";
-
         URL url_service = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) url_service.openConnection();
         connection.setRequestMethod(Constantes.getMethod);

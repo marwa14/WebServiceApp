@@ -1,64 +1,71 @@
 package com.example.hp.callwebserviceapplication.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by HP on 09/11/2017.
  */
 
 public class Comment {
-    private int postId;
-    private int id;
-    private String name;
-    private String email;
-    private String body;
+    @SerializedName("postId")
+    private int mPostId;
+    @SerializedName("id")
+    private int mId;
+    @SerializedName("name")
+    private String mName;
+    @SerializedName("email")
+    private String mEmail;
+    @SerializedName("body")
+    private String mBody;
 
     public Comment(int postId, int id, String name, String email, String body) {
-        this.postId = postId;
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.body = body;
+        mPostId = postId;
+        mId = id;
+        mName = name;
+        mEmail = email;
+        mBody = body;
     }
 
     public Comment() {
     }
 
     public int getPostId() {
-        return postId;
+        return mPostId;
     }
 
     public void setPostId(int postId) {
-        this.postId = postId;
+        mPostId = postId;
     }
 
     public int getId() {
-        return id;
+        return mId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        mId = id;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        mName = name;
     }
 
     public String getEmail() {
-        return email;
+        return mEmail;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        mEmail = email;
     }
 
     public String getBody() {
-        return body;
+        return mBody;
     }
 
     public void setBody(String body) {
-        this.body = body;
+        mBody = body;
     }
 }

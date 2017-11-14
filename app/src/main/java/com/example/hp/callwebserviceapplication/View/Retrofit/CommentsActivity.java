@@ -28,7 +28,7 @@ public class CommentsActivity extends AppCompatActivity {
     private CommentAdapter mCommentsAdapter;
     private List<Comment> mList;
     private Retrofit mRetrofit;
-    private static String TAG = "CommentsAcivity";
+    private static String mTAG = "CommentsAcivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class CommentsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-                Log.i(TAG, "Failure" + t.toString());
+                Log.i(mTAG, "Failure" + t.toString());
 
 
             }

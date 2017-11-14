@@ -29,7 +29,7 @@ public class PostsActivity extends AppCompatActivity implements AdapterView.OnIt
     private ListView mListView;
     private Retrofit mRetrofit;
     private PostAdapter mPostAdapter;
-    private static String TAG = "PostAcivity";
+    private static String mTAG = "PostAcivity";
     private List<Post> mList;
 
 
@@ -56,7 +56,7 @@ public class PostsActivity extends AppCompatActivity implements AdapterView.OnIt
 
             @Override
             public void onFailure(Throwable t) {
-                Log.i(TAG, "Failure" + t.toString());
+                Log.i(mTAG, "Failure" + t.toString());
 
             }
         });

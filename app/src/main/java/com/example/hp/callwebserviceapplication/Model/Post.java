@@ -1,55 +1,61 @@
 package com.example.hp.callwebserviceapplication.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by HP on 09/11/2017.
  */
 
 public class Post {
-    private int userId;
-    private int id;
-    private String title;
-    private String body;
+    @SerializedName("userId")
+    private int mUserId;
+    @SerializedName("id")
+    private int mId;
+    @SerializedName("title")
+    private String mTitle;
+    @SerializedName("body")
+    private String mBody;
 
     public Post() {
 
     }
 
     public Post(int userId, int id, String title, String body) {
-        this.userId = userId;
-        this.id = id;
-        this.title = title;
-        this.body = body;
+        mUserId = userId;
+        mId = id;
+        mTitle = title;
+        mBody = body;
     }
 
     public int getUserId() {
-        return userId;
+        return mUserId;
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        mUserId = userId;
     }
 
     public int getId() {
-        return id;
+        return mId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        mId = id;
     }
 
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        mTitle = title;
     }
 
     public String getBody() {
-        return body;
+        return mBody;
     }
 
     public void setBody(String body) {
-        this.body = body;
+        mBody = body;
     }
 }
