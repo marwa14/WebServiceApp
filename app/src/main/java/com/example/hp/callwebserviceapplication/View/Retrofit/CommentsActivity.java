@@ -33,7 +33,7 @@ public class CommentsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comments3);
+        setContentView(R.layout.activity_comments_retrofit);
         mIdPost = getIntent().getExtras().getInt(Constantes.post_id, Constantes.idPostDef);
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setTitle(Constantes.activityComment);

@@ -26,7 +26,7 @@ public class PostsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_posts2);
+        setContentView(R.layout.activity_posts_asynctask);
         mListView = findViewById(R.id.list_post);
         mListPosts = new ArrayList<>();
         mAsyncPosts = new ListPosts();

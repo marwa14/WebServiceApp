@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mButtonRetrofit.setOnClickListener(this);
         mButtonThread.setOnClickListener(this);
         mButtonAsyncTask.setOnClickListener(this);
-
     }
 
     @Override

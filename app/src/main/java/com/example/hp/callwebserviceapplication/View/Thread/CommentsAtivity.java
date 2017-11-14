@@ -33,7 +33,7 @@ public class CommentsAtivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comments);
+        setContentView(R.layout.activity_comments_thread);
         mIdPost = getIntent().getExtras().getInt(Constantes.post_id, Constantes.idPostDef);
         mListComment = new ArrayList<>();
         mListview = findViewById(R.id.list);

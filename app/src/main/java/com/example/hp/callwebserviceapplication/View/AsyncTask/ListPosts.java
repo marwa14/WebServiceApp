@@ -52,9 +52,4 @@ public class ListPosts extends AsyncTask<String, String, ArrayList<Post>> {
 
     }
 
-    @Override
-    protected void onPostExecute(ArrayList<Post> posts) {
-        super.onPostExecute(posts);
-
-    }
 }

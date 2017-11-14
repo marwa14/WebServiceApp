@@ -35,7 +35,7 @@ public class PostsActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_posts);
+        setContentView(R.layout.activity_posts_thread);
         mList = new ArrayList<>();
         mListPosts = findViewById(R.id.list_p);
         mPostAdapter = new PostAdapter(mList, this);
@@ -43,8 +43,6 @@ public class PostsActivity extends AppCompatActivity implements AdapterView.OnIt
         mListPosts.setOnItemClickListener(this);
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setTitle(Constantes.activityPost);
-
-
         Thread getPost = new Thread(new Runnable() {
             public void run() {
 
@@ -61,8 +59,6 @@ public class PostsActivity extends AppCompatActivity implements AdapterView.OnIt
 
 
         });
-
-
         mHandler = new Handler() {
             public void handleMessage(Message msg) {
                 mResponse = msg.getData().getString(Constantes.key_response);

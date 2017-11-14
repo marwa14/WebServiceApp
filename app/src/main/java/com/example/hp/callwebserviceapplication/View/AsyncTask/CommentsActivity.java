@@ -25,7 +25,7 @@ public class CommentsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comments2);
+        setContentView(R.layout.activity_comments_asynctask);
         ActionBar actionBar = this.getSupportActionBar();
         actionBar.setTitle(Constantes.activityComment);
         mListView = findViewById(R.id.list_comment);

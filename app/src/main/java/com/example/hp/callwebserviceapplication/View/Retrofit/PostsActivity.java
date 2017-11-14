@@ -36,7 +36,7 @@ public class PostsActivity extends AppCompatActivity implements AdapterView.OnIt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_posts3);
+        setContentView(R.layout.activity_posts_retrofit);
         mListView = findViewById(R.id.list);
         mListView.setOnItemClickListener(this);
         mList = new ArrayList<>();
