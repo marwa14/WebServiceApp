@@ -5,22 +5,20 @@ package com.example.hp.callwebserviceapplication.Tools;
  */
 
 public class Constantes {
-    public final static String url = "https://jsonplaceholder.typicode.com/posts";
-    public final static String base_url = "https://jsonplaceholder.typicode.com";
-    public final static int codeSuccess = 200;
-    public final static String key_response = "response";
-    public final static String getMethod = "GET";
-    public final static String post_userId = "userId";
-    public final static String post_id = "id";
-    public final static String post_title = "title";
-    public final static String post_body = "body";
-    public final static String comment_postId = "postId";
-    public final static String comment_id = "id";
-    public final static String comment_name = "name";
-    public final static String comment_email = "email";
-    public final static String comment_body = "body";
-    public final static String activityPost = "Posts";
-    public final static String activityComment = "Comments";
-    public final static int idPostDef = 0;
+    public final static String URL = "https://jsonplaceholder.typicode.com/posts";
+    public final static String BASE_URL = "https://jsonplaceholder.typicode.com";
+    public final static int CODE_SUCCESS = 200;
+    public final static String KEY_RESPONSE = "response";
+    public final static String GET_METHOD = "GET";
+    public final static String POST_USER_ID = "userId";
+    public final static String POST_ID = "id";
+    public final static String POST_TITLE = "title";
+    public final static String POST_BODY = "body";
+    public final static String COMMENT_POST_ID = "postId";
+    public final static String COMMENT_ID = "id";
+    public final static String COMMENT_NAME = "name";
+    public final static String COMMENT_EMAIL = "email";
+    public final static String COMMENT_BODY = "body";
+    public final static int ID_POST_DEF = 0;
 
 }

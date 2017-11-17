@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.hp.callwebserviceapplication.Model.Post;
 import com.example.hp.callwebserviceapplication.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,11 +45,9 @@ public class PostAdapter extends ArrayAdapter<Post> {
         return mList.size();
     }
 
-    public List<Post> getmList() {
-        return mList;
-    }
 
-    public void setmList(List<Post> mList) {
-        this.mList = mList;
+    public void onResults(ArrayList<Post> posts) {
+        mList.addAll(posts);
+        notifyDataSetChanged();
     }
 }

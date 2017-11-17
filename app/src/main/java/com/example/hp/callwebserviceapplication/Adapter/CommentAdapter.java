@@ -45,11 +45,10 @@ public class CommentAdapter extends ArrayAdapter<Comment> {
         return mList.size();
     }
 
-    public List<Comment> getmList() {
-        return mList;
+    public void setResult(List<Comment> list)
+    {
+        mList.addAll(list);
+        this.notifyDataSetChanged();
     }
 
-    public void setmList(List<Comment> mList) {
-        this.mList = mList;
-    }
 }

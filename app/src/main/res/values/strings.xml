@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CallWebServiceApplication</string>
+    <string name="comment" > Comment </string>
+    <string name="post">Post</string>
 </resources>

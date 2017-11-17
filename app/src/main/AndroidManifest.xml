@@ -22,16 +22,20 @@
             android:name=".View.Thread.PostsActivity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".View.Thread.CommentsAtivity"
-            android:parentActivityName=".View.Thread.PostsActivity" />
-        <activity
             android:name=".View.AsyncTask.PostsActivity"
             android:parentActivityName=".MainActivity" />
         <activity
+            android:name=".View.Retrofit.PostsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".View.Thread.CommentsAtivity"
+            android:parentActivityName=".View.Thread.PostsActivity" />
+        <activity
             android:name=".View.AsyncTask.CommentsActivity"
-            android:parentActivityName=".View.AsyncTask.CommentsActivity" />
-        <activity android:name=".View.Retrofit.PostsActivity" android:parentActivityName=".MainActivity" />
-        <activity android:name=".View.Retrofit.CommentsActivity" android:parentActivityName=".View.Retrofit.PostsActivity"></activity>
+            android:parentActivityName=".View.AsyncTask.PostsActivity" />
+        <activity
+            android:name=".View.Retrofit.CommentsActivity"
+            android:parentActivityName=".View.Retrofit.PostsActivity"></activity>
     </application>
 
 </manifest>

@@ -14,13 +14,13 @@ import java.net.URL;
 
 public class UtilsClass {
 
-    public String getResponse(String url) throws IOException {
+    public static String getResponse(String url) throws IOException {
         String response = "";
         URL url_service = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) url_service.openConnection();
-        connection.setRequestMethod(Constantes.getMethod);
+        connection.setRequestMethod(Constantes.GET_METHOD);
         connection.connect();
-        if (connection.getResponseCode() == Constantes.codeSuccess) {
+        if (connection.getResponseCode() == Constantes.CODE_SUCCESS) {
             InputStream stream = connection.getInputStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(stream));
             StringBuffer buffer = new StringBuffer();

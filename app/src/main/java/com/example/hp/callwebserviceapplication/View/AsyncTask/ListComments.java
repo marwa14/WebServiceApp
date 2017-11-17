@@ -18,40 +18,60 @@ import java.util.List;
  * Created by HP on 09/11/2017.
  */
 
-public class ListComments extends AsyncTask<String, String, List<Comment>> {
-    private String mIdPost;
-    private List<Comment> mListComment;
+public class ListComments extends AsyncTask<Integer, String, Object> {
+
+    private CommentListener mListener;
+
+    public ListComments(CommentListener commentListener) {
+        mListener = commentListener;
+
+
+    }
 
     @Override
-    protected List<Comment> doInBackground(String... strings) {
-        mListComment = new ArrayList<>();
-        mIdPost = strings[0];
-        UtilsClass utilsClass = new UtilsClass();
+    protected Object doInBackground(Integer... strings) {
+        int id = strings[0];
         try {
-            parseData(utilsClass.getResponse(Constantes.url + "/" + mIdPost + "/comments"));
+            return parseData(UtilsClass.getResponse(Constantes.URL + "/" + id + "/comments"));
         } catch (JSONException e) {
-            e.printStackTrace();
+            return e;
         } catch (IOException e) {
-            e.printStackTrace();
+            return e;
         }
-
-        return mListComment;
-
     }
 
-    public void parseData(String data) throws JSONException {
+    public List<Comment> parseData(String data) throws JSONException {
+        List<Comment> list = new ArrayList<Comment>();
         JSONArray jsonArray = new JSONArray(data);
         for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject obj = new JSONObject(jsonArray.getString(i));
+            JSONObject obj = new JSONObject(jsonArray.optString(i, ""));
             Comment com = new Comment();
-            com.setPostId(obj.getInt(Constantes.comment_postId));
-            com.setId(obj.getInt(Constantes.comment_id));
-            com.setName(obj.getString(Constantes.comment_name));
-            com.setBody(obj.getString(Constantes.comment_body));
-            com.setEmail(obj.getString(Constantes.comment_email));
-            mListComment.add(com);
-
+            com.setPostId(obj.optInt(Constantes.COMMENT_POST_ID));
+            com.setId(obj.optInt(Constantes.COMMENT_ID));
+            com.setName(obj.optString(Constantes.COMMENT_NAME));
+            com.setBody(obj.optString(Constantes.COMMENT_BODY));
+            com.setEmail(obj.optString(Constantes.COMMENT_EMAIL));
+            list.add(com);
         }
+        return list;
     }
 
+    @Override
+    protected void onPostExecute(Object o) {
+        super.onPostExecute(o);
+        if (mListener != null) {
+            if (o instanceof Exception) {
+                mListener.onFail((Exception) o);
+            } else {
+                mListener.onResult((ArrayList<Comment>) o);
+            }
+
+        }
+
+    }
+
+    public void cancel() {
+        this.cancel(true);
+        mListener = null;
+    }
 }

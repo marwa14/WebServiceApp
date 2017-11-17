@@ -1,8 +1,12 @@
 package com.example.hp.callwebserviceapplication.View.AsyncTask;
 
+import android.app.AlertDialog;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import com.example.hp.callwebserviceapplication.Adapter.CommentAdapter;
@@ -12,36 +16,54 @@ import com.example.hp.callwebserviceapplication.Tools.Constantes;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-public class CommentsActivity extends AppCompatActivity {
+public class CommentsActivity extends AppCompatActivity implements CommentListener {
 
     private int mIdPost;
     private ListComments mAsyncComments;
     private CommentAdapter mCommentAdapter;
-    private List<Comment> mListComment;
     private ListView mListView;
+    private AlertDialog mDialog;
+    private static final String TAG = CommentsActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments_asynctask);
         ActionBar actionBar = this.getSupportActionBar();
-        actionBar.setTitle(Constantes.activityComment);
+        actionBar.setTitle(R.string.comment);
+        mIdPost = getIntent().getExtras().getInt(Constantes.POST_ID, Constantes.ID_POST_DEF);
         mListView = findViewById(R.id.list_comment);
-        mListComment = new ArrayList<>();
-        mIdPost = getIntent().getExtras().getInt(Constantes.post_id, Constantes.idPostDef);
-        mAsyncComments = new ListComments();
-        try {
-            mListComment = mAsyncComments.execute(String.valueOf(mIdPost)).get();
-            mCommentAdapter = new CommentAdapter(mListComment, this);
-            mListView.setAdapter(mCommentAdapter);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        mCommentAdapter = new CommentAdapter(new ArrayList(), this);
+        mListView.setAdapter(mCommentAdapter);
+
+        View view = getLayoutInflater().inflate(R.layout.progress, null);
+        mDialog = new AlertDialog.Builder(this).setView(view).create();
+        mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        mDialog.show();
+
+        mAsyncComments = new ListComments(this);
+        mAsyncComments.execute(mIdPost);
 
 
+    }
+
+    @Override
+    public void onFail(Exception e) {
+        Log.i(TAG, e.toString());
+    }
+
+    @Override
+    public void onResult(List<Comment> list) {
+        mDialog.dismiss();
+        mCommentAdapter.setResult(list);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mAsyncComments != null)
+            mAsyncComments.cancel();
+        super.onDestroy();
     }
 }

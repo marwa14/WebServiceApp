@@ -1,7 +1,7 @@
 package com.example.hp.callwebserviceapplication.Tools;
 
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by HP on 09/11/2017.

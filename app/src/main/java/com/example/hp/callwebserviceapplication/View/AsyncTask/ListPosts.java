@@ -17,39 +17,56 @@ import java.util.ArrayList;
  * Created by HP on 09/11/2017.
  */
 
-public class ListPosts extends AsyncTask<String, String, ArrayList<Post>> {
+public class ListPosts extends AsyncTask<String, String, Object> {
 
-    private ArrayList<Post> mListPosts;
+    private PostListener mListener;
+
+    public ListPosts(PostListener listener) {
+        mListener = listener;
+    }
 
 
     @Override
-    protected ArrayList<Post> doInBackground(String... strings) {
-        mListPosts = new ArrayList<>();
-        UtilsClass utilsClass = new UtilsClass();
+    protected Object doInBackground(String... strings) {
         try {
-            parseData(utilsClass.getResponse(Constantes.url));
+            return parseData(UtilsClass.getResponse(Constantes.URL));
         } catch (JSONException e) {
             e.printStackTrace();
+            return e;
         } catch (IOException e) {
             e.printStackTrace();
+            return e;
         }
-
-        return mListPosts;
     }
 
-    public void parseData(String data) throws JSONException {
+    @Override
+    protected void onPostExecute(Object posts) {
+        if (mListener != null) {
+            if (posts instanceof Exception) {
+                mListener.onFail((Exception) posts);
+            } else {
+                mListener.onResults((ArrayList<Post>) posts);
+            }
+        }
+    }
+
+    public ArrayList<Post> parseData(String data) throws JSONException {
+        ArrayList<Post> listPosts = new ArrayList<>();
         JSONArray jsonArray = new JSONArray(data);
         for (int i = 0; i < jsonArray.length() - 1; i++) {
             JSONObject obj = new JSONObject(jsonArray.getString(i));
             Post post = new Post();
-            post.setUserId(obj.getInt(Constantes.post_userId));
-            post.setId(obj.getInt(Constantes.post_id));
-            post.setTitle(obj.getString(Constantes.post_title));
-            post.setBody(obj.getString(Constantes.post_body));
-            mListPosts.add(post);
-
+            post.setUserId(obj.optInt(Constantes.POST_USER_ID));
+            post.setId(obj.optInt(Constantes.POST_ID));
+            post.setTitle(obj.optString(Constantes.POST_TITLE));
+            post.setBody(obj.optString(Constantes.POST_BODY));
+            listPosts.add(post);
         }
-
+        return listPosts;
     }
 
+    public void cancel() {
+        cancel(true);
+        mListener = null;
+    }
 }
